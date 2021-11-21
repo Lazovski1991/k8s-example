@@ -13,3 +13,6 @@ spring:
     kubernetes:
       discovery:
         all-namespaces: true
+
+databaseName: ${database}
+databaseUrl: ${database_url}

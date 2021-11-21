@@ -68,28 +68,17 @@ spec:
 
 ---
 
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
-  namespace: default
-  name: service-gateway
-rules:
-  - apiGroups: [""]
-    resources: ["configmaps", "pods", "services", "endpoints", "secrets"]
-    verbs: ["get", "list", "watch"]
-
----
-
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: service-gateway
-  namespace: default
+  name: fabric8-rbac
 subjects:
   - kind: ServiceAccount
+    # Reference to upper's `metadata.name`
     name: default
-    apiGroup: ""
+    # Reference to upper's `metadata.namespace`
+    namespace: default
 roleRef:
-  kind: Role
-  name: service-gateway
-  apiGroup: ""
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io

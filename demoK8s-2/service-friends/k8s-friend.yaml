@@ -21,6 +21,12 @@ spec:
           image: nelson9291/service-friend:1.0
           ports:
             - containerPort: 8081
+          env:
+            - name: DATABASE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: main-config
+                  key: database
 
 ---
 apiVersion: autoscaling/v2beta2

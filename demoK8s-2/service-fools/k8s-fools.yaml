@@ -21,8 +21,12 @@ spec:
           image: nelson9291/service-fool:1.0
           ports:
             - containerPort: 8082
+          envFrom:
+            - configMapRef:
+                name: main-config
 
 ---
+
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
