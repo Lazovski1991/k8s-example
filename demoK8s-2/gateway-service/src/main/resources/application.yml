@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
+
+zuul:
+  ribbon:
+    eager-load:
+      enabled: true
+  sensitive-headers:
+  routes:
+    service-friend:
+      path: /friend/**
+      service-id: service-friend
+      stripPrefix: true
+
+    service-fool:
+      path: /fool/**
+      service-id: service-fool
+      stripPrefix: true

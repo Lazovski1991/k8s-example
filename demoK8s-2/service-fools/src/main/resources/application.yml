@@ -1,0 +1,15 @@
+server:
+  port: 8082
+eureka:
+  server:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: service-fool
+
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
