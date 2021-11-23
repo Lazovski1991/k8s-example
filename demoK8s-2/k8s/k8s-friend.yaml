@@ -18,15 +18,12 @@ spec:
     spec:
       containers:
         - name: service-friend
-          image: nelson9291/service-friend:1.0
+          image: nelson9291/service-friend:1.1
           ports:
             - containerPort: 8081
           env:
-            - name: DATABASE_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: main-config
-                  key: database
+            - name: DB_URL
+              value: jdbc:postgresql://postgres-db-lb:5432/test_db
 
 ---
 apiVersion: autoscaling/v2beta2

@@ -10,4 +10,15 @@ spring:
       discovery:
         all-namespaces: true
 
-databaseName: ${DATABASE_NAME}
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+  datasource:
+    url: ${DB_URL}
+    username: alex
+    password: alex
+    driver-class-name: org.postgresql.Driver
+

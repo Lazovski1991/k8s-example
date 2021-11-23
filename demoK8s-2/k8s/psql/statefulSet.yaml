@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pgset
+spec:
+  selector:
+    matchLabels:
+      app: pgset # has to match .spec.template.metadata.labels
+  serviceName: pgset-sa
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pgset
+        name: pgset
+    spec:
+      containers:
+        - name: postgresql-db
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+              name: postgres
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
